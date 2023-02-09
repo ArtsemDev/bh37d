@@ -148,10 +148,19 @@
 # N = 5
 # numbers = [2, 4, 8, 16, 32]
 
-N = 3
+# N = 3
+#
+# users = {
+#     0: {'name': 'Alex', 'email': 'alex@info.com'},
+#     1: {'name': 'Pavel', 'email': 'pavel@info.com'},
+#     2: {'name': 'Maria', 'email': 'maria@info.com'},
+# }
 
-users = {
-    0: {'name': 'Alex', 'email': 'alex@info.com'},
-    1: {'name': 'Pavel', 'email': 'pavel@info.com'},
-    2: {'name': 'Maria', 'email': 'maria@info.com'},
-}
+# n = int(input())
+# numbers = [2 ** i for i in range(1, n+1)]
+# text = input()
+# data = {i: text.count(i) for i in text}
+# print(data)
+n = int(input())
+data = {i: {'name': input(), 'email': input()} for i in range(n)}
+print(data)
