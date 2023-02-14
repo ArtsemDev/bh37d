@@ -181,3 +181,48 @@
 #         break
 
 # while not (number := input()).isdigit(): ...
+
+# N = int(input('N: '))
+# M = int(input('M: '))
+# K = int(input('K: '))
+#
+# while N:
+#     if K % M == 0:
+#         N -= 1
+#         print(K, end=' ')
+#         K += M
+#     else:
+#         K += 1
+
+# a = int(input('a: '))
+# b = int(input('b: '))
+# action = input('operation: ')
+# if action == '+':
+#     print(a + b)
+# elif action == '-':
+#     print(a - b)
+#
+
+# N = int(input())
+
+# VAR 1
+# c = 0
+# for i in range(2, N+1, 2):
+#     print(i, end=' ')
+#     c += 1
+#     if c % 5 == 0:
+#         print()
+
+# VAR 2
+# for i in range(2, N+1, 2):
+#     print(i, end=' ')
+#     if i % 10 == 0:
+#         print()
+
+# for i in range(2, N+1, 10):
+#     for j in range(i, i+9, 2):
+#         if j <= N:
+#             print(j, end=' ')
+#         else:
+#             break
+#     print()
