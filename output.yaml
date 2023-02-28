@@ -1,0 +1,7 @@
+name: name
+age: 35
+lang:
+- ru
+- en
+city: null
+is_human: true

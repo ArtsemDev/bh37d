@@ -1,0 +1,9 @@
+{
+  "title": "Coffee",
+  "descr": "ГОРЯЧИЙ!",
+  "price": 5.5,
+  "doping": [
+    "milk",
+    "sugar"
+  ]
+}
