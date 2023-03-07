@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS smartphone(
+    id SERIAL PRIMARY KEY,
+    model VARCHAR(64) NOT NULL UNIQUE,
+    price DECIMAL(8, 2) NOT NULL
+);

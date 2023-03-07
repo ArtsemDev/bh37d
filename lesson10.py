@@ -79,11 +79,11 @@
 # foo()
 
 
-from sqlite3 import connect, Cursor
-
-
-conn = connect('db.sqlite3')
-cur = conn.cursor()
+# from sqlite3 import connect, Cursor
+#
+#
+# conn = connect('db.sqlite3')
+# cur = conn.cursor()
 # from collections import namedtuple
 
 
@@ -151,3 +151,12 @@ cur = conn.cursor()
 #     WHERE id = ?;
 # ''', (1, ))
 # conn.commit()
+
+# from psycopg2 import connect
+#
+# conn = connect('postgresql://milvus:password@localhost:5432/bh37dd')
+# with conn.cursor() as cursor:
+#     with open('sql.sql', 'r', encoding='utf-8') as file:
+#         cursor.execute(file.read())
+#         conn.commit()
+
