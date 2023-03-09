@@ -1,8 +1,10 @@
 from pydantic.types import Decimal
 from sqlalchemy import Column, INT, VARCHAR, DECIMAL, BOOLEAN, ForeignKey, create_engine
+from sqlalchemy import TIMESTAMP
 from sqlalchemy.orm import DeclarativeBase, declared_attr, sessionmaker, Session
 
 from pydantic import BaseModel, Field
+from sqlalchemy.sql.functions import now
 
 
 class Base(DeclarativeBase):
@@ -92,13 +94,21 @@ class ProductSchema(Base):
     category_id: int = Field(ge=1)
 
 
-cat = {
-    'name': 'Category1'
-}
-try:
-    cat = CategorySchema(**cat)
-except:
-    pass
-else:
-    cat = Category(**cat.dict())
-    cat.save()
+class User(Base):
+    name = Column(VARCHAR(64), nullable=False)
+
+
+class Chat(Base):
+    name = Column(VARCHAR(64), nullable=False)
+
+
+class ChatMember(Base):
+    chat_id = Column(INT, ForeignKey('chat.id', ondelete='CASCADE'), nullable=False)
+    user_id = Column(INT, ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
+
+
+class Message(Base):
+    chat_id = Column(INT, ForeignKey('chat.id', ondelete='CASCADE'), nullable=False)
+    user_id = Column(INT, ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
+    text = Column(VARCHAR(1024), nullable=False)
+    date_created = Column(TIMESTAMP, nullabel=False, default=now)
