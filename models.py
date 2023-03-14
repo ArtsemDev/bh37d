@@ -84,10 +84,11 @@ class Product(Base):
 
 
 class CategorySchema(BaseModel):
-    name: str = Field(min_length=4)
+    id: int
+    name: str = Field(min_length=4, max_length=64)
 
 
-class ProductSchema(Base):
+class ProductSchema(BaseModel):
     name: str
     descr: str
     price: Decimal = Field(max_digits=8, decimal_places=2)
@@ -111,4 +112,35 @@ class Message(Base):
     chat_id = Column(INT, ForeignKey('chat.id', ondelete='CASCADE'), nullable=False)
     user_id = Column(INT, ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
     text = Column(VARCHAR(1024), nullable=False)
-    date_created = Column(TIMESTAMP, nullabel=False, default=now)
+    date_created = Column(TIMESTAMP, nullable=False, default=now)
+
+
+from csv import DictReader, DictWriter
+
+
+def load_category_from_csv():
+    with open('category.csv', 'r', encoding='utf-8') as file:
+        reader = DictReader(file)
+        for cat in reader:
+            try:
+                cat = CategorySchema(**cat)
+            except:
+                pass
+            else:
+                cat = Category(**cat.dict())
+                try:
+                    cat.save()
+                except:
+                    pass
+load_category_from_csv()
+
+def dump_to_csv():
+    from sqlalchemy import select
+    categories = Category.scalars(select(Category).order_by(Category.pk))
+    with open('dump_category.csv', 'w', encoding='utf-8') as file:
+        writer = DictWriter(file, fieldnames=('id', 'name'))
+        writer.writeheader()
+        for category in categories:
+            writer.writerow(category.dict())
+
+dump_to_csv()
